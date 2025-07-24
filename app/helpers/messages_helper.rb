@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'twilio-ruby'
 
-module TwilioModule
+module MessagesHelper
 
   @twilio_client = Twilio::REST::Client.new( ENV[ 'TWILIO_ACCOUNT_SID' ], ENV[ 'TWILIO_AUTH_TOKEN' ] )
   @twilio_service = @twilio_client.verify.v2.services( ENV[ 'TWILIO_VERIFY_SID' ] )
@@ -58,6 +58,3 @@ module TwilioModule
   end
 
 end
-
-# module MessagesHelper
-# end
