@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
       render json: @new_message, status: 200
     else
       render json: @new_message.errors.full_messages, status: 400
-    ende
+    end
   end
 
   private
