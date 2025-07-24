@@ -34,13 +34,13 @@ registry:
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 env:
   secret:
-    - MONGODB_USERNAME
-    - MONGODB_PASSWORD
-    - MONGO_URI
     - TWILIO_PHONE_NUMBER
     - TWILIO_ACCOUNT_SID
     - TWILIO_AUTH_TOKEN
     - TWILIO_VERIFY_SID
+    - MONGODB_USERNAME
+    - MONGODB_PASSWORD
+    - MONGO_URI
     - RAILS_MASTER_KEY
   # clear:
   #   # Set number of cores available to the application on each server (default: 1).
