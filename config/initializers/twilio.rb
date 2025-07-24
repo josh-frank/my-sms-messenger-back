@@ -1,6 +1,6 @@
 require 'rubygems'
-require 'dotenv'
-require 'dotenv-rails'
+require "dotenv"
+Dotenv.load(".env")
 require 'twilio-ruby'
 
 module TwilioModule
