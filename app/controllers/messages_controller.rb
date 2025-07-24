@@ -10,5 +10,4 @@ class MessagesController < ApplicationController
     params.require( :message ).permit( :to, :content, :session_id )
   end
 
-
 end
