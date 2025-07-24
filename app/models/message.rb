@@ -1,3 +1,5 @@
+require 'rails/mongoid'
+
 class Message
   include Mongoid::Document
   include Mongoid::Timestamps
