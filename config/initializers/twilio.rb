@@ -3,9 +3,9 @@ require 'twilio-ruby'
 
 module TwilioModule
 
-  @twilio_client = Twilio::REST::Client.new( ENV.fetch( 'TWILIO_ACCOUNT_SID' ), ENV.fetch( 'TWILIO_AUTH_TOKEN' ) )
-  @twilio_service = @twilio_client.verify.v2.services( ENV.fetch( 'TWILIO_VERIFY_SID' ) )
-  @twilio_phone_number = ENV.fetch( 'TWILIO_PHONE_NUMBER' )
+  @twilio_client = Twilio::REST::Client.new( ENV[ 'TWILIO_ACCOUNT_SID' ], ENV[ 'TWILIO_AUTH_TOKEN' ] )
+  @twilio_service = @twilio_client.verify.v2.services( ENV[ 'TWILIO_VERIFY_SID' ] )
+  @twilio_phone_number = ENV[ 'TWILIO_PHONE_NUMBER' ]
   @twilio_logger = Logger.new( "#{ Rails.root }/log/twilio.log" )
 
   def self.client
