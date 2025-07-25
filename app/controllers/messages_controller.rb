@@ -2,11 +2,11 @@ class MessagesController < ApplicationController
 
   def create
     @new_message = Message.new( message_params )
-    @send_message = MessagesHelper.send( message_params[ :to ], message_params[ :content ] )
-    if @new_message.save && !@send_message.error
-      render json: @new_message, status: 200
-    else
+    unless message_params[ :to ].present? && @new_message.save
       render json: @new_message.errors.full_messages, status: 400
+    else
+      @send_message = MessagesHelper.send( message_params[ :to ], message_params[ :content ] )
+      render json: @new_message, status: 200
     end
   end
 

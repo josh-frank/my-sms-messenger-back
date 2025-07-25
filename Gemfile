@@ -26,6 +26,8 @@ gem "rack-cors", require: 'rack/cors'
 gem 'mongoid'
 # SMS via Twilio API
 gem 'twilio-ruby'
+# Validate phone numbers
+gem 'phonelib'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
