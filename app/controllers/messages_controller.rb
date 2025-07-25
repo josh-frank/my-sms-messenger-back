@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
   end
 
   def show
-    @messages = Message.where( session_id: message_params[ :session_id ] ).order( created_at: :desc )
+    @messages = Message.where( session_id: params[ :session_id ] ).order( created_at: :desc )
     render json: @messages, status: 200
   end
 
