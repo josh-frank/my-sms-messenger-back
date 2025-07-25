@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  post "messages", to: "messages#create", as: "create_message"
+  get "messages", to: "messages#show"
+  post "messages", to: "messages#create"
 
 end

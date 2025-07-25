@@ -10,6 +10,10 @@ class MessagesController < ApplicationController
     end
   end
 
+  def show
+    render json: Message.where( session_id: message_params[ :session:id ] ).order( created_at: :desc ), status: 200
+  end
+
   private
 
   def message_params
