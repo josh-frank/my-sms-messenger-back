@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
 
-  before_actio, only: [ :create, :show ]
+  before_action :set_messages_by_session_id, only: [ :create, :show ]
 
   def create
     @new_message = Message.new( message_params )
