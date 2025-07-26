@@ -11,6 +11,10 @@ class Message
   before_validation :parse_phone_with_phonelib
   validate :valid_us_phone
 
+  def self.by_session_id( session_id )
+    self.where( session_id: session_id ).order( created_at: :desc )
+  end
+
   private
 
   def parse_phone_with_phonelib
