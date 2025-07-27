@@ -1,6 +1,8 @@
 class MessagesController < ApplicationController
 
   before_action :set_messages_by_session_id, only: [ :create, :show ]
+  skip_before_action :authorize
+  skip_before_action :authenticate_jwt
 
   def create
     @new_message = Message.new( message_params )
