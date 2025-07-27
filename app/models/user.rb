@@ -1,5 +1,6 @@
 class User
 
+  include ActiveModel::SecurePassword
   has_secure_password
 
   include Mongoid::Document
