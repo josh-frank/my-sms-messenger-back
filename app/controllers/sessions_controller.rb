@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
       begin
           verification = MessagesHelper.send_verification_code( @parse_phone )
           render json: { verification_sid: verification.sid }, status: 200
-      # rescue Twilio::REST::RestError => error
-      rescue error
+      rescue Twilio::REST::RestError => error
+    #   rescue error
           render json: { errors: [ error.error_message ] }, status: error.code
       end
   end
@@ -24,8 +24,8 @@ class SessionsController < ApplicationController
           else
               render json: { verification_sid: check_code.sid }, status: 200
           end
-      # rescue Twilio::REST::RestError => error
-      rescue error
+      rescue Twilio::REST::RestError => error
+    #   rescue error
           render json: { errors: [ error.error_message ] }, status: error.code
       end
   end
@@ -34,8 +34,8 @@ class SessionsController < ApplicationController
       begin
           verification = current_user.send_code
           render json: { user_id: current_user.id, verification_sid: verification.sid }, status: 200
-      # rescue Twilio::REST::RestError => error
-      rescue error
+      rescue Twilio::REST::RestError => error
+    #   rescue error
           render json: { errors: [ error.error_message ] }, status: error.code
       end
   end
@@ -51,8 +51,8 @@ class SessionsController < ApplicationController
               session[ :token ] = token
               render json: { user: current_user, verification_sid: check_code.sid, token: token }, status: 200
           end
-      # rescue Twilio::REST::RestError => error
-      rescue error
+      rescue Twilio::REST::RestError => error
+    #   rescue error
           render json: { errors: [ error.error_message ] }, status: error.status_code
       end
   end
