@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
       begin
           verification = MessagesHelper.send_verification_code( @parse_phone )
           render json: { verification_sid: verification.sid }, status: 200
-      rescue Twilio::REST::RestError => error
-    #   rescue error
+    #   rescue Twilio::REST::RestError => error
+      rescue error
           render json: { errors: [ error.error_message ] }, status: error.code
       end
   end
@@ -24,8 +24,8 @@ class SessionsController < ApplicationController
           else
               render json: { verification_sid: check_code.sid }, status: 200
           end
-      rescue Twilio::REST::RestError => error
-    #   rescue error
+    #   rescue Twilio::REST::RestError => error
+      rescue error
           render json: { errors: [ error.error_message ] }, status: error.code
       end
   end
@@ -34,25 +34,25 @@ class SessionsController < ApplicationController
       begin
           verification = current_user.send_code
           render json: { user_id: current_user.id, verification_sid: verification.sid }, status: 200
-      rescue Twilio::REST::RestError => error
-    #   rescue error
+    #   rescue Twilio::REST::RestError => error
+      rescue error
           render json: { errors: [ error.error_message ] }, status: error.code
       end
   end
   
   def login
       begin
-          check_code = current_user.check_code( session_params[ :code ] )
-          unless check_code.valid
-              render json: { errors: [ "Invalid verification code", "Enter digits only: no spaces or other characters" ] }, status: 401
-          else
+        #   check_code = current_user.check_code( session_params[ :code ] )
+        #   unless check_code.valid
+        #       render json: { errors: [ "Invalid verification code", "Enter digits only: no spaces or other characters" ] }, status: 401
+        #   else
               token = JWT.encode( current_user.to_json(), ENV[ 'RAILS_MASTER_KEY' ], 'HS256' )
               session[ :id ] = current_user.id
               session[ :token ] = token
               render json: { user: current_user, verification_sid: check_code.sid, token: token }, status: 200
-          end
-      rescue Twilio::REST::RestError => error
-    #   rescue error
+        #   end
+    #   rescue Twilio::REST::RestError => error
+      rescue error
           render json: { errors: [ error.error_message ] }, status: error.status_code
       end
   end
