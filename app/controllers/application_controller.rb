@@ -5,14 +5,14 @@ class ApplicationController < ActionController::API
   before_action :authorize, except: [ :about ]
 
   def current_user
-    @current_user ||= Client.find_by( id: session[ :id ] )
+    @current_user ||= User.find_by( id: session[ :id ] )
   end
 
   def authenticate_jwt
     begin
       token = request.authorization.split.last
       payload = JWT.decode( token, ENV[ 'RAILS_MASTER_KEY' ], true, { algorithm: 'HS256' } )[ 0 ]
-      @current_user = Client.find_by( id: JSON.parse( payload )[ "id" ] )
+      @current_user = User.find_by( id: JSON.parse( payload )[ "id" ] )
     rescue
       render json: { errors: [ "Unauthorized" ] }, status: 401
     end

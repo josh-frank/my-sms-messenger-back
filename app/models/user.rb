@@ -8,4 +8,8 @@ class User
   field :phone, type: String
   field :password_digest, type: String
 
+  def check_code( code )
+    MessagesHelper.check_verification_code( self.phone, code )
+  end
+
 end
