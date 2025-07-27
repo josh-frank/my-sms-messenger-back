@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
   def send_new_user_code
       begin
-          verification = TwilioModule.send_verification_code( @parse_phone )
+          verification = MessagesHelper.send_verification_code( @parse_phone )
           render json: { verification_sid: verification.sid }, status: 200
       # rescue Twilio::REST::RestError => error
       rescue error
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
   def check_new_user_code
       begin
-          check_code = TwilioModule.check_verification_code( @parse_phone, session_params[ :code ] )
+          check_code = MessagesHelper.check_verification_code( @parse_phone, session_params[ :code ] )
           unless check_code.valid
               render json: { errors: [ "Invalid verification code", "Enter digits only: no spaces or other characters" ] }, status: 401
           else
