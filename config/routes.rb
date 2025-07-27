@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "application#about", as: "about"
 
+  post "/login/code", to: "sessions#user_code"
+  post "/login", to: "sessions#login"
+  delete "/logout", to: "sessions#logout", as: "logout"
+
   get "messages", to: "messages#show"
   post "messages", to: "messages#create"
 
